@@ -1,0 +1,15 @@
+Package: squirrygis
+Type: Package
+Title: Utilities Functions For GIS
+Version: 1.0
+Date: 2023-03-24
+Author: Emilio Berti
+Maintainer: Emilio Berti <emilio.berti.academia@gmail.com>
+Description: TBD
+License: What license is it under?
+Imports: Rcpp (>= 1.0.9)
+LinkingTo: Rcpp, RcppArmadillo
+RoxygenNote: 7.2.0
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

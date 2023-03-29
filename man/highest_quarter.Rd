@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{highest_quarter}
 \alias{highest_quarter}
-\title{Temperature Of The Highest Quarter}
+\title{Average Value of the Highest Quarter}
 \usage{
 highest_quarter(x)
 }
@@ -14,5 +14,5 @@ matrix with average temperature of the highest quarter (first
   column) and the first month of the quarter (second column).
 }
 \description{
-Temperature Of The Highest Quarter
+Average Value of the Highest Quarter
 }

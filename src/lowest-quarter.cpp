@@ -3,7 +3,7 @@
 using namespace Rcpp;
 
 //' @name lowest_quarter
-//' @title Temperature Of The Lowest Quarter
+//' @title Average Value of the Lowest Quarter
 //' @param x matrix of timeseries.
 //' @return matrix with average temperature of the lowest quarter (first
 //'   column) and the first month of the quarter (second column).

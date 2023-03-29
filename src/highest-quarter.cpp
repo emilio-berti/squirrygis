@@ -3,7 +3,7 @@
 using namespace Rcpp;
 
 //' @name highest_quarter
-//' @title Temperature Of The Highest Quarter
+//' @title Average Value of the Highest Quarter
 //' @param x matrix of timeseries.
 //' @return matrix with average temperature of the highest quarter (first
 //'   column) and the first month of the quarter (second column).

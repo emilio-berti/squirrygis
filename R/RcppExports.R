@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @name highest_quarter
-#' @title Temperature Of The Highest Quarter
+#' @title Average Value of the Highest Quarter
 #' @param x matrix of timeseries.
 #' @return matrix with average temperature of the highest quarter (first
 #'   column) and the first month of the quarter (second column).
@@ -11,7 +11,7 @@ highest_quarter <- function(x) {
 }
 
 #' @name lowest_quarter
-#' @title Temperature Of The Lowest Quarter
+#' @title Average Value of the Lowest Quarter
 #' @param x matrix of timeseries.
 #' @return matrix with average temperature of the lowest quarter (first
 #'   column) and the first month of the quarter (second column).

@@ -2,7 +2,7 @@
 % Please edit documentation in R/RcppExports.R
 \name{lowest_quarter}
 \alias{lowest_quarter}
-\title{Temperature Of The Lowest Quarter}
+\title{Average Value of the Lowest Quarter}
 \usage{
 lowest_quarter(x)
 }
@@ -14,5 +14,5 @@ matrix with average temperature of the lowest quarter (first
   column) and the first month of the quarter (second column).
 }
 \description{
-Temperature Of The Lowest Quarter
+Average Value of the Lowest Quarter
 }

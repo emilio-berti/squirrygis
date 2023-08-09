@@ -2,6 +2,15 @@ useDynLib(squirrygis, .registration=TRUE)
 importFrom(Rcpp, evalCpp)
 exportPattern("^[[:alpha:]]+")
 
-importFrom("methods", "is")
-importFrom("terra",
-           "nlyr", "values")
+importFrom(
+  "methods", 
+  "is"
+)
+
+# terra::functions() are faster than simple c++ implementations.
+# min() and max() are base functions and just called from terra.
+importFrom(
+  "terra",
+  "rast", "nlyr", "values",
+  "mean"
+)

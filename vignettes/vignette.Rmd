@@ -14,8 +14,8 @@ The software and utilities out there are powerful, but written in the language o
 Calling them often requires to learn new frameworks, find the lost documentation, and prototype endless code that will never be used.
 Even if you succeed, your ears will blast and your soul will be lost.
 As I found that most of the commonly used routines are quite easy to implement, I started implementing them in C++ for speed.
-I then packaged and the end result was squirrygis.
-squirrygis is still a work in progress, as I add new routines as I need them.
+I then packaged them and the end result was squirrygis.
+squirrygis is still a work in progress: I add new routines as I need them.
 Currently, squirrygis is tailored to calculate bioclimatic variables for monthly timeseries data.
 The available bioclimatic variables are:
 
@@ -67,7 +67,7 @@ names(series) <- seq_len(12)
 plot(series[[1]], col = heat.colors(100))
 ```
 
-It is mandatory that the raster stack of timeseries to have 12 layers, one per month.
+It is mandatory for the raster stack of timeseries to have 12 layers, one per month.
 This is a strict requirement, but a necessary one.
 In fact, most of the bioclimatic variables will be not accurate if only one layer is missing.
 You can name the stack layers with names, as I did, or not.
@@ -77,9 +77,9 @@ If the names are different from 1...12 or are not in the correct order (e.g., Ma
 warning("Raster stack doesn't have valid names or they are not in the correct order")
 ```
 
-In fact, this could have been an error instead of warning.
+In fact, this could have been an error instead of a warning.
 I just assumed you know a bit what you're doing and be wise enough to pass the stack layers in the correct calendar order.
-I think otherwise, I would have been too paternalistic.
+I would have been too paternalistic, otherwise, I think.
 
 To calculate BIO10 is then straightforward:
 
@@ -88,10 +88,10 @@ b10 <- bio10(series)
 plot(b10, col = heat.colors(100))
 ```
 
-As quarters are defined as "three consecutive calendar months", I also implemented a way to check when this quarters start:
+As quarters are defined as "three consecutive calendar months", I also implemented a way to check when this quarters starts:
 
 ```{r bio10-q}
-q10 <- bio10(series, also.quarter = TRUE) #this return a stack
+q10 <- bio10(series, also.quarter = TRUE) #this returns a stack
 b10 <- q10[[1]] #the first layer is BIO10
 plot(q10[[2]]) #the second layer is the starting month of the quarter
 ```

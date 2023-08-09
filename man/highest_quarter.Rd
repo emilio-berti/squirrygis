@@ -10,7 +10,7 @@ highest_quarter(x)
 \item{x}{matrix of timeseries.}
 }
 \value{
-matrix with average temperature of the highest quarter (first
+matrix with average climate of the highest quarter (first
   column) and the first month of the quarter (second column).
 }
 \description{

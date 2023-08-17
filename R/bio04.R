@@ -1,4 +1,4 @@
-#' @title BIO04 Annual Mean Temperature Seasonality
+#' @title BIO04 Mean Annual Temperature Seasonality
 #' @param tas raster stack of monthly average temperatures.
 #' 
 #' @details Standard deviation of the monthly mean temperatures.
@@ -14,7 +14,7 @@ bio04 <- function(tas) {
   mu <- mean(tas)
   r <- (tas - mu) ^ 2
   r <- 1 / 11 * sum(r) #unbiased variance
-  r <- sqrt(r) * 100
+  r <- sqrt(r)
   names(r) <- "BIO04"
   return (r)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio03.R
 \name{bio03}
 \alias{bio03}
-\title{BIO03 Annual Mean Isothermality}
+\title{BIO03 Mean Annual Isothermality}
 \usage{
 bio03(tas, tmax, tmin)
 }
@@ -17,7 +17,7 @@ bio03(tas, tmax, tmin)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO03 Annual Mean Isothermality
+BIO03 Mean Annual Isothermality
 }
 \details{
 In contrast to CHELSA, this is not multiplied by 100

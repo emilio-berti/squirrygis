@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio05.R
 \name{bio05}
 \alias{bio05}
-\title{BIO05 Annual Mean Maximum Temperature}
+\title{BIO05 Maximum Temperature of Warmest Month}
 \usage{
 bio05(tmax)
 }
@@ -13,5 +13,5 @@ bio05(tmax)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO05 Annual Mean Maximum Temperature
+BIO05 Maximum Temperature of Warmest Month
 }

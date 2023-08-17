@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio01.R
 \name{bio01}
 \alias{bio01}
-\title{BIO01 Annual Mean Temperature}
+\title{BIO01 Mean Annual Temperature}
 \usage{
 bio01(tas)
 }
@@ -13,5 +13,5 @@ bio01(tas)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO01 Annual Mean Temperature
+BIO01 Mean Annual Temperature
 }

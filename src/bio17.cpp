@@ -2,15 +2,15 @@
 
 using namespace Rcpp;
 
-//' @name lowest_quarter
-//' @title Average Value of the Lowest Quarter
-//' @param x matrix of timeseries.
-//' @return matrix with average temperature of the lowest quarter (first
+//' @name bio17
+//' @title Mean Precipitation of Driest Quarter
+//' @param pr matrix of precipitation timeseries.
+//' @return matrix with average precipitation of the driest quarter (first
 //'   column) and the first month of the quarter (second column).
 // [[Rcpp::export]]
-NumericMatrix lowest_quarter( NumericMatrix x ) {
-  int rows = x.nrow();
-  int cols = x.ncol();
+NumericMatrix cpp_bio17( NumericMatrix pr ) {
+  int rows = pr.nrow();
+  int cols = pr.ncol();
   double window, val;
   NumericMatrix ans( rows , 2 );
   
@@ -19,15 +19,15 @@ NumericMatrix lowest_quarter( NumericMatrix x ) {
   }
   
   for ( int i = 0 ; i < rows; i++ ) {
+    val = 10000000;
     for ( int j = 0; j < (cols - 2); j++ ) {
-      window = x(i, j) + x(i, j + 1) + x(i, j + 2);
-      window = window / 3;
+      window = pr(i, j) + pr(i, j + 1) + pr(i, j + 2);
       if ( j == 0 or window < val ) {
         val = window;
+        ans(i, 0) = (pr(i, j) + pr(i, j + 1) + pr(i, j + 2)) / 3;
         ans(i, 1) = j + 1; //first month of the quarter
       }
     }
-    ans(i, 0) = val; //value of the quarter
   }
   
   return ans;

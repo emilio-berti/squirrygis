@@ -1,4 +1,4 @@
-#' @title BIO01 Annual Mean Temperature
+#' @title BIO01 Mean Annual Temperature
 #' @param tas raster stack of monthly average temperatures.
 #' @return one raster with the bioclimatic variable.
 bio01 <- function(tas) {

@@ -2,30 +2,78 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @name bio08
-#' @title Average Value of the Wettest Quarter
-#' @param tas matrix of averate temperature timeseries.
+#' @title Mean Temperature of Wettest Quarter
+#' @param tas matrix of average temperature timeseries.
 #' @param pr matrix of precipitaiton timeseries.
-#' @return matrix with average temperature of the highest quarter (first
+#' @return matrix with average temperature of the wettest quarter (first
 #'   column) and the first month of the quarter (second column).
 cpp_bio08 <- function(tas, pr) {
     .Call(`_squirrygis_cpp_bio08`, tas, pr)
 }
 
-#' @name highest_quarter
-#' @title Average Value of the Highest Quarter
-#' @param x matrix of timeseries.
-#' @return matrix with average climate of the highest quarter (first
+#' @name bio09
+#' @title Mean Temperature of Driest Quarter
+#' @param tas matrix of average temperature timeseries.
+#' @param pr matrix of precipitaiton timeseries.
+#' @return matrix with average temperature of the driest quarter (first
 #'   column) and the first month of the quarter (second column).
-highest_quarter <- function(x) {
-    .Call(`_squirrygis_highest_quarter`, x)
+cpp_bio09 <- function(tas, pr) {
+    .Call(`_squirrygis_cpp_bio09`, tas, pr)
 }
 
-#' @name lowest_quarter
-#' @title Average Value of the Lowest Quarter
-#' @param x matrix of timeseries.
-#' @return matrix with average temperature of the lowest quarter (first
+#' @name bio10
+#' @title Mean Temperature of Warmest Quarter
+#' @param tas matrix of average temperature timeseries.
+#' @return matrix with average temperature of the warmest quarter (first
 #'   column) and the first month of the quarter (second column).
-lowest_quarter <- function(x) {
-    .Call(`_squirrygis_lowest_quarter`, x)
+cpp_bio10 <- function(tas) {
+    .Call(`_squirrygis_cpp_bio10`, tas)
+}
+
+#' @name bio11
+#' @title Mean Temperature of Coldest Quarter
+#' @param tas matrix of average temperature timeseries.
+#' @return matrix with average temperature of the coldest quarter (first
+#'   column) and the first month of the quarter (second column).
+cpp_bio11 <- function(tas) {
+    .Call(`_squirrygis_cpp_bio11`, tas)
+}
+
+#' @name bio16
+#' @title Mean Precipitation of Wettest Quarter
+#' @param pr matrix of precipitation timeseries.
+#' @return matrix with average precipitation of the wettest quarter (first
+#'   column) and the first month of the quarter (second column).
+cpp_bio16 <- function(pr) {
+    .Call(`_squirrygis_cpp_bio16`, pr)
+}
+
+#' @name bio17
+#' @title Mean Precipitation of Driest Quarter
+#' @param pr matrix of precipitation timeseries.
+#' @return matrix with average precipitation of the driest quarter (first
+#'   column) and the first month of the quarter (second column).
+cpp_bio17 <- function(pr) {
+    .Call(`_squirrygis_cpp_bio17`, pr)
+}
+
+#' @name bio18
+#' @title Mean Precipitation of Warmest Quarter
+#' @param tas matrix of average temperature timeseries.
+#' @param pr matrix of precipitaiton timeseries.
+#' @return matrix with average temperature of the wettest quarter (first
+#'   column) and the first month of the quarter (second column).
+cpp_bio18 <- function(tas, pr) {
+    .Call(`_squirrygis_cpp_bio18`, tas, pr)
+}
+
+#' @name bio19
+#' @title Mean Precipitation of Coldest Quarter
+#' @param tas matrix of average temperature timeseries.
+#' @param pr matrix of precipitaiton timeseries.
+#' @return matrix with average temperature of the wettest quarter (first
+#'   column) and the first month of the quarter (second column).
+cpp_bio19 <- function(tas, pr) {
+    .Call(`_squirrygis_cpp_bio19`, tas, pr)
 }
 

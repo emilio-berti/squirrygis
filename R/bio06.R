@@ -1,4 +1,4 @@
-#' @title BIO06 Annual Mean Maximum Temperature
+#' @title BIO06 Minimum Temperature Coldest Month
 #' @param tmin raster stack of monthly average temperatures.
 #' @return one raster with the bioclimatic variable.
 bio06 <- function(tmin) {

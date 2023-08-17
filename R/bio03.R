@@ -1,4 +1,4 @@
-#' @title BIO03 Annual Mean Isothermality
+#' @title BIO03 Mean Annual Isothermality
 #' @param tas raster stack of monthly average temperatures.
 #' @param tmax raster stack of monthly maximum temperatures.
 #' @param tmin raster stack of monthly minimum temperatures.

@@ -22,33 +22,96 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// highest_quarter
-NumericMatrix highest_quarter(NumericMatrix x);
-RcppExport SEXP _squirrygis_highest_quarter(SEXP xSEXP) {
+// cpp_bio09
+NumericMatrix cpp_bio09(NumericMatrix tas, NumericMatrix pr);
+RcppExport SEXP _squirrygis_cpp_bio09(SEXP tasSEXP, SEXP prSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(highest_quarter(x));
+    Rcpp::traits::input_parameter< NumericMatrix >::type tas(tasSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type pr(prSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio09(tas, pr));
     return rcpp_result_gen;
 END_RCPP
 }
-// lowest_quarter
-NumericMatrix lowest_quarter(NumericMatrix x);
-RcppExport SEXP _squirrygis_lowest_quarter(SEXP xSEXP) {
+// cpp_bio10
+NumericMatrix cpp_bio10(NumericMatrix tas);
+RcppExport SEXP _squirrygis_cpp_bio10(SEXP tasSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(lowest_quarter(x));
+    Rcpp::traits::input_parameter< NumericMatrix >::type tas(tasSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio10(tas));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_bio11
+NumericMatrix cpp_bio11(NumericMatrix tas);
+RcppExport SEXP _squirrygis_cpp_bio11(SEXP tasSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type tas(tasSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio11(tas));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_bio16
+NumericMatrix cpp_bio16(NumericMatrix pr);
+RcppExport SEXP _squirrygis_cpp_bio16(SEXP prSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type pr(prSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio16(pr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_bio17
+NumericMatrix cpp_bio17(NumericMatrix pr);
+RcppExport SEXP _squirrygis_cpp_bio17(SEXP prSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type pr(prSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio17(pr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_bio18
+NumericMatrix cpp_bio18(NumericMatrix tas, NumericMatrix pr);
+RcppExport SEXP _squirrygis_cpp_bio18(SEXP tasSEXP, SEXP prSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type tas(tasSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type pr(prSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio18(tas, pr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_bio19
+NumericMatrix cpp_bio19(NumericMatrix tas, NumericMatrix pr);
+RcppExport SEXP _squirrygis_cpp_bio19(SEXP tasSEXP, SEXP prSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type tas(tasSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type pr(prSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_bio19(tas, pr));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_squirrygis_cpp_bio08", (DL_FUNC) &_squirrygis_cpp_bio08, 2},
-    {"_squirrygis_highest_quarter", (DL_FUNC) &_squirrygis_highest_quarter, 1},
-    {"_squirrygis_lowest_quarter", (DL_FUNC) &_squirrygis_lowest_quarter, 1},
+    {"_squirrygis_cpp_bio09", (DL_FUNC) &_squirrygis_cpp_bio09, 2},
+    {"_squirrygis_cpp_bio10", (DL_FUNC) &_squirrygis_cpp_bio10, 1},
+    {"_squirrygis_cpp_bio11", (DL_FUNC) &_squirrygis_cpp_bio11, 1},
+    {"_squirrygis_cpp_bio16", (DL_FUNC) &_squirrygis_cpp_bio16, 1},
+    {"_squirrygis_cpp_bio17", (DL_FUNC) &_squirrygis_cpp_bio17, 1},
+    {"_squirrygis_cpp_bio18", (DL_FUNC) &_squirrygis_cpp_bio18, 2},
+    {"_squirrygis_cpp_bio19", (DL_FUNC) &_squirrygis_cpp_bio19, 2},
     {NULL, NULL, 0}
 };
 

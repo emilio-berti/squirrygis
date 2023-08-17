@@ -1,4 +1,4 @@
-#' @title BIO02 Annual Mean Diurnal Range
+#' @title BIO02 Mean Annual Diurnal Range
 #' @param tmax raster stack of monthly maximum temperatures.
 #' @param tmin raster stack of monthly minimum temperatures.
 #' @return one raster with the bioclimatic variable.

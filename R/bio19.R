@@ -1,10 +1,10 @@
-#' @title BIO08 Mean Temperature of Wettest Quarter
+#' @title BIO19 Mean Precipitation of Coldest Quarter
 #' @param tas raster stack of monthly average temperatures.
 #' @param pr raster stack of monthly precipitation.
 #' @param also.quarter TRUE/FALSE (default FALSE), if to return also the 
 #'  starting month of the warmest quarter.
 #' @return one raster with the bioclimatic variable.
-bio08 <- function(tas, pr, also.quarter = FALSE) {
+bio19 <- function(tas, pr, also.quarter = FALSE) {
   stopifnot(is(tas, "SpatRaster"))
   stopifnot(is(pr, "SpatRaster"))
   stopifnot(nlyr(tas) == 12)
@@ -20,7 +20,7 @@ bio08 <- function(tas, pr, also.quarter = FALSE) {
   t <- matrix(tas, ncol = 12)
   p <- matrix(pr, ncol = 12)
   
-  r <- cpp_bio08(t, p)
+  r <- cpp_bio19(t, p)
   
   q <- r[, 2]
   r <- r[, 1]
@@ -30,9 +30,9 @@ bio08 <- function(tas, pr, also.quarter = FALSE) {
   r <- rast(r)
   q <- rast(q)
   r <- c(r, q)
-  names(r) <- c("BIO08", "start.quarter")
+  names(r) <- c("BIO19", "start.quarter")
   
-  if (also.quarter == FALSE) r <- r[["BIO08"]]
+  if (also.quarter == FALSE) r <- r[["BIO19"]]
   
   return (r)
 }

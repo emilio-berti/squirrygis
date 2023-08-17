@@ -1,4 +1,4 @@
-#' @title BIO07 Annual Mean Temperature range
+#' @title BIO07 Mean Annual Temperature range
 #' @param tmax raster stack of monthly maximum temperatures.
 #' @param tmin raster stack of monthly minimum temperatures.
 #' @return one raster with the bioclimatic variable.

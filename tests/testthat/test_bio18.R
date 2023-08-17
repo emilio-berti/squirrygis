@@ -1,4 +1,4 @@
-test_that("BIO10 c++", {
+test_that("BIO18 c++", {
   set.seed(1234)
   require(terra)
   
@@ -18,7 +18,23 @@ test_that("BIO10 c++", {
   )
   names(tas) <- as.character(1:12)
   
-  cpp <- bio10(tas, also.quarter = TRUE)
+  pr <- c(
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5)),
+    rast(matrix(runif(25, 5, 25), 5, 5))
+  )
+  names(pr) <- as.character(1:12)
+  
+  cpp <- bio18(tas, pr, also.quarter = TRUE)
   
   q <- matrix(NA, nrow(tas), ncol(tas))
   r <- matrix(NA, nrow(tas), ncol(tas))
@@ -32,12 +48,12 @@ test_that("BIO10 c++", {
           q[i, j] <- k
         }
       }
-      r[i, j] <- mean(as.numeric(tas[i, j, (q[i, j] : (q[i, j] + 2))]))
+      r[i, j] <- mean(as.numeric(pr[i, j, (q[i, j] : (q[i, j] + 2))]))
     }
   }
   baseR <- c(rast(r), rast(q))
-  names(baseR) <- c("BIO10", "start.quarter")
-  
+  names(baseR) <- c("BIO18", "start.quarter")
+
   expect_equal(
     values(baseR), values(cpp)
   )

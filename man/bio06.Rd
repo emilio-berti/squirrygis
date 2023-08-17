@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio06.R
 \name{bio06}
 \alias{bio06}
-\title{BIO06 Annual Mean Maximum Temperature}
+\title{BIO06 Minimum Temperature Coldest Month}
 \usage{
 bio06(tmin)
 }
@@ -13,5 +13,5 @@ bio06(tmin)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO06 Annual Mean Maximum Temperature
+BIO06 Minimum Temperature Coldest Month
 }

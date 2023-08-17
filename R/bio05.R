@@ -1,4 +1,4 @@
-#' @title BIO05 Annual Mean Maximum Temperature
+#' @title BIO05 Maximum Temperature of Warmest Month
 #' @param tmax raster stack of monthly average temperatures.
 #' @return one raster with the bioclimatic variable.
 bio05 <- function(tmax) {

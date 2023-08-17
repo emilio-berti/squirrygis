@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio02.R
 \name{bio02}
 \alias{bio02}
-\title{BIO02 Annual Mean Diurnal Range}
+\title{BIO02 Mean Annual Diurnal Range}
 \usage{
 bio02(tmax, tmin)
 }
@@ -15,5 +15,5 @@ bio02(tmax, tmin)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO02 Annual Mean Diurnal Range
+BIO02 Mean Annual Diurnal Range
 }

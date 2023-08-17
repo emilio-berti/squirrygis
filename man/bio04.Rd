@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio04.R
 \name{bio04}
 \alias{bio04}
-\title{BIO04 Annual Mean Temperature Seasonality}
+\title{BIO04 Mean Annual Temperature Seasonality}
 \usage{
 bio04(tas)
 }
@@ -13,7 +13,7 @@ bio04(tas)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO04 Annual Mean Temperature Seasonality
+BIO04 Mean Annual Temperature Seasonality
 }
 \details{
 Standard deviation of the monthly mean temperatures.

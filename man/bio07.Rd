@@ -2,7 +2,7 @@
 % Please edit documentation in R/bio07.R
 \name{bio07}
 \alias{bio07}
-\title{BIO07 Annual Mean Temperature range}
+\title{BIO07 Mean Annual Temperature range}
 \usage{
 bio07(tmax, tmin)
 }
@@ -15,5 +15,5 @@ bio07(tmax, tmin)
 one raster with the bioclimatic variable.
 }
 \description{
-BIO07 Annual Mean Temperature range
+BIO07 Mean Annual Temperature range
 }

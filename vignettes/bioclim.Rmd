@@ -15,6 +15,11 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r setup}
+library(terra)
+library(squirrygis)
+```
+
 Bioclimatic variables (BIOs) are processed climatic variables that are thought to characterize the climatic niche of species.
 BIOs can be calculated in squirrygis using as input monthly layers of:
 
@@ -28,8 +33,6 @@ There areis other software to obtain BIOs from raster layers.
 However, I found them quite laborious, as the often require to install software other than R (e.g., SAGAGIS or python for @karger2023chelsa).
 Additionally, how actually BIOs are calculated is often buried under jargon and technical details, sometimes completely omitted from documentations.
 Therefore, I re-implemented algorithms to calculate BIOs that are transparent (the source code is *libre*) and documented (in this present vignette).
-
-# The 19 BIOs
 
 There are 19 BIOs commonly used in species distribution models (SDMs):
 
@@ -60,14 +63,35 @@ For instance, in one cell the wettest quarter may be January-March and in next c
 I found this behavior confusing at least.
 Therefore, I implemented a routine that optionally returns the starting month of the quarter for all BIOs defined on quarters:
 
-**example in R**
+```{r quarter}
+tas <- array(runif(10*10*12, 250, 300), dim = c(10, 10, 12))
+tas <- rast(tas)
+names(tas) <- as.character(1:12)
+b10 <- bio10(tas, also.quarter = TRUE) #return a stack with also the starting month
+plot(b10[["BIO10"]], main = "BIO10")
+plot(b10[["start.quarter"]], type = "classes", main = "First month of quarter")
+```
 
 Note also that the months in the quarter must fall within the same calendar year, i.e. November and December from the previous year and January and March of the following year are not included in the calculations.
 This may create a mismatch between BIOs and actual species response to climate.
 
+In addition to functions that calculate each bioclimatic variable separately, in squirrygis there's a wrapper function for all of them: `bioclim()`.
 
-```{r setup}
-library(squirrygis)
+```{r bioclim}
+tas <- array(runif(10*10*12, 250, 300), dim = c(10, 10, 12))
+tas <- rast(tas)
+tmin <- array(runif(10*10*12, 210, 250), dim = c(10, 10, 12))
+tmin <- rast(tmin)
+tmax <- array(runif(10*10*12, 300, 350), dim = c(10, 10, 12))
+tmax <- rast(tmax)
+pr <- array(runif(10*10*12, 0, 1e4), dim = c(10, 10, 12))
+pr <- rast(pr)
+names(tas) <- as.character(1:12)
+names(tmin) <- as.character(1:12)
+names(tmax) <- as.character(1:12)
+names(pr) <- as.character(1:12)
+bio <- bioclim(tas, tmin, tmax, pr)
+plot(bio[[1:4]]) #first four BIOs
 ```
 
 # References

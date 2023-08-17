@@ -24,7 +24,7 @@ bio11 <- function(tas, also.quarter = FALSE) {
   r <- c(r, q)
   names(r) <- c("BIO11", "start.quarter")
   
-  if (also.quarter == FALSE) r <- r[["BIO10"]]
+  if (also.quarter == FALSE) r <- r[["BIO11"]]
   
   return (r)
 }

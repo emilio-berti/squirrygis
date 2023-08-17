@@ -1,0 +1,73 @@
+---
+title: "Bioclimatic Variables"
+output: rmarkdown::html_vignette
+bibliography: references.bib
+vignette: >
+  %\VignetteIndexEntry{Bioclimatic Variables}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Bioclimatic variables (BIOs) are processed climatic variables that are thought to characterize the climatic niche of species.
+BIOs can be calculated in squirrygis using as input monthly layers of:
+
+  - average temperature (tas)
+  - minimum temperature (tmin)
+  - maximum temperature (tmax)
+  - total precipitation amount (pr)
+
+My preferred climate database is CHELSA [@karger2017climatologies], but any database from the four which monthly climatic variables can be obtained is suitable to calculate BIOs.
+There areis other software to obtain BIOs from raster layers.
+However, I found them quite laborious, as the often require to install software other than R (e.g., SAGAGIS or python for @karger2023chelsa).
+Additionally, how actually BIOs are calculated is often buried under jargon and technical details, sometimes completely omitted from documentations.
+Therefore, I re-implemented algorithms to calculate BIOs that are transparent (the source code is *libre*) and documented (in this present vignette).
+
+# The 19 BIOs
+
+There are 19 BIOs commonly used in species distribution models (SDMs):
+
+  - **BIO01** (K) -- annual mean temperature = $\frac{1}{12}\sum_{i=1}^{12} \text{tas}_i = \text{E[tas]}$
+  - **BIO02** (K) -- annual mean diurnal range = $\frac{1}{12}\sum_{i=1}^{12} (\text{tmax}_i - \text{tmin}_i)$. Note that a more appropriate name for this would be: annual mean monthly range, as tmax and tmin do not necessarily occur in the same day.
+  - **BIO03** (adimensional) -- annual mean isothermality = $\frac{1/12 \sum_{i=1}^{12} (\text{tmax}_i - \text{tmin}_i)}{\text{max(tmax)} - \text{min(tmin)}}$. Usually, this variable is returned multiplied by 100, but I preferred not to do so; this is a adimensional variables and the only reason to multiply by 100 is to save disk space by saving it as a number type that takes less space. Note that CHELSA documentation about this variable (https://chelsa-climate.org/wp-admin/download-page/CHELSA_tech_specification.pdf, p. 14) is wrong.
+  - **BIO04** (K) -- annual mean temperature seasonality = $\sqrt{ \frac{1}{11} \sum_{i=1}^{12} \left( \text{tas}_i - \text{E[tas]} \right) } = \text{sd(tas)}$, i.e. the standard deviation of the monthly temperatures. This variables is also usually returned multiplied by 100; I preferred to return the actual sd also in this case.
+  - **BIO05** (K) -- maximum temperature of warmest month = $\text{max(tmax)}$.
+  - **BIO06** (K) -- minimum temperature of coldest month = $\text{min(tmin)}$.
+  - **BIO07** (K) -- temperature annual range = $\text{max(tmax)} - \text{min(tmin)}$.
+  - **BIO08** (K) -- mean temperature of the wettest quarter.
+  - **BIO09** (K) -- mean temperature of the driest quarter.
+  - **BIO10** (K) -- mean temperature of the warmest quarter.
+  - **BIO11** (K) -- mean temperature of the coldest quarter.
+  - **BIO12** ($kg/m^2$) -- total annual precipitation = $\sum_{i=1}^{12}\text{pr}_i$.
+  - **BIO13** ($kg/m^2$) -- total precipitation of wettest month = $\text{max(pr})$.
+  - **BIO14** ($kg/m^2$) -- total precipitation of driest month = $\text{min(pr})$.
+  - **BIO15** (adimensional) -- precipitation seasonality = $\sqrt{ \frac{1}{11} \sum_{i=1}^{12} \left( \text{pr}_i - \text{E[pr]} \right) } = \frac{\text{sd(pr)}}{\text{E[pr]}}$, i.e. the coeffient of variation of the monthly precipitations.
+  - **BIO16** ($kg/m^2$) -- mean monthly precipitation of the wettest quarter.
+  - **BIO17** ($kg/m^2$) -- mean monthly precipitation of the driest quarter.
+  - **BIO18** ($kg/m^2$) -- mean monthly precipitation of the warmest quarter.
+  - **BIO19** ($kg/m^2$) -- mean monthly precipitation of the coldest quarter.
+  
+The definition of quarter is three consecutive calendar months, e.g. April (from 1st), June, July (to 30th).
+Quarters are defined at the **pixel** level.
+Adjacent pixels may have different quarters.
+For instance, in one cell the wettest quarter may be January-March and in next cell February-April.
+I found this behavior confusing at least.
+Therefore, I implemented a routine that optionally returns the starting month of the quarter for all BIOs defined on quarters:
+
+**example in R**
+
+Note also that the months in the quarter must fall within the same calendar year, i.e. November and December from the previous year and January and March of the following year are not included in the calculations.
+This may create a mismatch between BIOs and actual species response to climate.
+
+
+```{r setup}
+library(squirrygis)
+```
+
+# References

@@ -6,7 +6,7 @@
 #' i.e. sd(pr) / divided by mean(pr)
 #' 
 #' @return one raster with the bioclimatic variable.
-bio14 <- function(pr) {
+bio15 <- function(pr) {
   stopifnot(is(pr, "SpatRaster"))
   stopifnot(nlyr(pr) == 12)
   if (! identical(names(pr), as.character(1:12)) ) {

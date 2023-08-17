@@ -4,11 +4,9 @@
 \alias{bio03}
 \title{BIO03 Mean Annual Isothermality}
 \usage{
-bio03(tas, tmax, tmin)
+bio03(tmax, tmin)
 }
 \arguments{
-\item{tas}{raster stack of monthly average temperatures.}
-
 \item{tmax}{raster stack of monthly maximum temperatures.}
 
 \item{tmin}{raster stack of monthly minimum temperatures.}

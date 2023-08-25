@@ -4,7 +4,7 @@ output: rmarkdown::html_vignette
 bibliography: references.bib
 vignette: >
   %\VignetteIndexEntry{Bioclimatic Variables}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -38,7 +38,7 @@ There are 19 BIOs commonly used in species distribution models (SDMs):
 
   - **BIO01** (K) -- annual mean temperature = $\frac{1}{12}\sum_{i=1}^{12} \text{tas}_i = \text{E[tas]}$
   - **BIO02** (K) -- annual mean diurnal range = $\frac{1}{12}\sum_{i=1}^{12} (\text{tmax}_i - \text{tmin}_i)$. Note that a more appropriate name for this would be: annual mean monthly range, as tmax and tmin do not necessarily occur in the same day.
-  - **BIO03** (adimensional) -- annual mean isothermality = $\frac{1/12 \sum_{i=1}^{12} (\text{tmax}_i - \text{tmin}_i)}{\text{max(tmax)} - \text{min(tmin)}}$. Usually, this variable is returned multiplied by 100, but I preferred not to do so; this is a adimensional variables and the only reason to multiply by 100 is to save disk space by saving it as a number type that takes less space. Note that CHELSA documentation about this variable (https://chelsa-climate.org/wp-admin/download-page/CHELSA_tech_specification.pdf, p. 14) is wrong.
+  - **BIO03** (adimensional) -- annual mean isothermality = $\frac{1/12 \sum_{i=1}^{12} (\text{tmax}_i - \text{tmin}_i)}{\text{max(tmax)} - \text{min(tmin)}}$. Usually, this variable is returned multiplied by 100, but I preferred not to do so. This is a adimensional variables and there are two reasons to return it multiplied by 100: i) to save disk space by saving it as a number type that takes less space. ii) The raw temperature data sometimes comes multiplied by 100, which means the final BIO will be multiplied by 100. However, if you pass a temperature layer that is in Kelvin or Celsius, this variable will not be returned multiplied by 100, which is confusing to me. Note that CHELSA documentation about this variable (https://chelsa-climate.org/wp-admin/download-page/CHELSA_tech_specification.pdf, p. 14) is incorrect.
   - **BIO04** (K) -- annual mean temperature seasonality = $\sqrt{ \frac{1}{11} \sum_{i=1}^{12} \left( \text{tas}_i - \text{E[tas]} \right) } = \text{sd(tas)}$, i.e. the standard deviation of the monthly temperatures. This variables is also usually returned multiplied by 100; I preferred to return the actual sd also in this case.
   - **BIO05** (K) -- maximum temperature of warmest month = $\text{max(tmax)}$.
   - **BIO06** (K) -- minimum temperature of coldest month = $\text{min(tmin)}$.

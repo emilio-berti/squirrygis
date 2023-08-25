@@ -3,7 +3,7 @@ title: "GIS analyses with squirrygis"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{GIS analyses with squirrygis}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 

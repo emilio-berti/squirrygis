@@ -1,0 +1,12 @@
+test_that("bioclims", {
+  require(terra)
+  tas <- rast(array(rnorm(12e2), dim = c(10, 10, 12)))
+  tmin <- rast(array(rnorm(12e2), dim = c(10, 10, 12)))
+  tmax <- rast(array(rnorm(12e2), dim = c(10, 10, 12)))
+  pr <- rast(array(runif(12e2, 1e2, 1e4), dim = c(10, 10, 12)))
+  names(tas) <- as.character(1:12)
+  names(tmin) <- as.character(1:12)
+  names(tmax) <- as.character(1:12)
+  names(pr) <- as.character(1:12)
+  expect_no_error(bioclim(tas, tmin, tmax, pr))
+})

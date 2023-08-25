@@ -8,5 +8,6 @@ test_that("bioclims", {
   names(tmin) <- as.character(1:12)
   names(tmax) <- as.character(1:12)
   names(pr) <- as.character(1:12)
-  expect_no_error(bioclim(tas, tmin, tmax, pr))
+  expect_no_error(bios <- bioclim(tas, tmin, tmax, pr))
+  expect_identical(names(bios), c(paste0("BIO0", 1:9), paste0("BIO", 10:19)))
 })

@@ -3,7 +3,7 @@ title: "GIS analyses with squirrygis"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{GIS analyses with squirrygis}
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -16,10 +16,6 @@ Even if you succeed, your ears will blast and your soul will be lost.
 As I found that most of the commonly used routines are quite easy to implement, I started implementing them in C++ for speed.
 I then packaged them and the end result was squirrygis.
 squirrygis is still a work in progress: I add new routines as I need them.
-Currently, squirrygis is tailored to calculate bioclimatic variables for monthly timeseries data.
-The available bioclimatic variables are:
-
-  - BIO10
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -27,74 +23,3 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-```{r setup}
-library(squirrygis)
-library(terra)
-```
-
-# Average temperature of the warmest quarter (BIO10)
-
-Let's write a function to generate some fake raster data for temperature.
-This function should take the dimension of the output raster and the minimum and maximum range of temperature.
-
-```{r temperature-fn}
-temperature <- function(rows, cols, min = -20, max = 30) {
-  ans <- matrix(runif(rows * cols, min, max), nrow = rows, ncol = cols)
-  ans <- rast(ans)
-  return (ans)
-}
-```
-
-We can use this to generate a monthly timeseries data.
-
-```{r temperature-series}
-series <- c(
-  temperature(100, 100, -20, -10),
-  temperature(100, 100, -15, -5),
-  temperature(100, 100, -10, 0),
-  temperature(100, 100, -5, 5),
-  temperature(100, 100, 0, 10),
-  temperature(100, 100, 5, 15),
-  temperature(100, 100, 10, 20),
-  temperature(100, 100, 7, 17),
-  temperature(100, 100, 4, 14),
-  temperature(100, 100, 1, 11),
-  temperature(100, 100, -2, 8),
-  temperature(100, 100, -5, 5)
-)
-names(series) <- seq_len(12)
-plot(series[[1]], col = heat.colors(100))
-```
-
-It is mandatory for the raster stack of timeseries to have 12 layers, one per month.
-This is a strict requirement, but a necessary one.
-In fact, most of the bioclimatic variables will be not accurate if only one layer is missing.
-You can name the stack layers with names, as I did, or not.
-If the names are different from 1...12 or are not in the correct order (e.g., May before July), squirrygis will return the warning:
-
-```{r warn, echo=FALSE}
-warning("Raster stack doesn't have valid names or they are not in the correct order")
-```
-
-In fact, this could have been an error instead of a warning.
-I just assumed you know a bit what you're doing and be wise enough to pass the stack layers in the correct calendar order.
-I would have been too paternalistic, otherwise, I think.
-
-To calculate BIO10 is then straightforward:
-
-```{r bio10}
-b10 <- bio10(series)
-plot(b10, col = heat.colors(100))
-```
-
-As quarters are defined as "three consecutive calendar months", I also implemented a way to check when this quarters starts:
-
-```{r bio10-q}
-q10 <- bio10(series, also.quarter = TRUE) #this returns a stack
-b10 <- q10[[1]] #the first layer is BIO10
-plot(q10[[2]]) #the second layer is the starting month of the quarter
-```
-
-I haven't seen this implemented before, but is quite insightful when doing analyses at large spatial scales.
-You may want to *know* if the warmest quarter starts in different months in adjacent areas.

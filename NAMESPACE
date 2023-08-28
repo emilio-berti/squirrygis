@@ -12,5 +12,6 @@ importFrom(
 importFrom(
   "terra",
   "rast", "nlyr", "values",
-  "mean"
+  "mean",
+  "crs", "crs<-", "ext", "ext<-"
 )

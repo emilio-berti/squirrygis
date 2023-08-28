@@ -26,7 +26,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: docker://pandoc/core
       - name: Set up R ${{ matrix.r-version }}
         uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
         with:
@@ -37,5 +36,8 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Check
+        uses: nikeee/setup-pandoc@v1
+        with:
+                pandoc-version: '2.7.3'
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}

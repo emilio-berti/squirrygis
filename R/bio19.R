@@ -31,6 +31,7 @@ bio19 <- function(tas, pr, also.quarter = FALSE) {
   q <- rast(q)
   r <- c(r, q)
   crs(r) <- crs(tas)
+  ext(r) <- ext(tas)
   names(r) <- c("BIO19", "start.quarter")
   
   if (also.quarter == FALSE) r <- r[["BIO19"]]

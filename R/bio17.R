@@ -23,6 +23,7 @@ bio17 <- function(pr, also.quarter = FALSE) {
   q <- rast(q)
   r <- c(r, q)
   crs(r) <- crs(pr)
+  ext(r) <- ext(pr)
   names(r) <- c("BIO17", "start.quarter")
   
   if (also.quarter == FALSE) r <- r[["BIO17"]]

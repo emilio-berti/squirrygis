@@ -7,11 +7,11 @@ importFrom(
   "is"
 )
 
-# terra::functions() are faster than simple c++ implementations.
-# min() and max() are base functions and just called from terra.
+# min() and max() are base functions and just called from raster.
 importFrom(
-  "terra",
-  "rast", "nlyr", "values",
-  "mean",
-  "crs", "crs<-", "ext", "ext<-"
+  "raster",
+  "raster", "stack",
+  "nlayers", 
+  "values", "minValue", "maxValue", "mean",
+  "crs", "crs<-", "extent", "extent<-"
 )

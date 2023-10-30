@@ -3,14 +3,14 @@
 #' @param tmin raster stack of monthly minimum temperatures.
 #' @return one raster with the bioclimatic variable.
 bio02 <- function(tmax, tmin) {
-  stopifnot(is(tmax, "SpatRaster"))
-  stopifnot(is(tmin, "SpatRaster"))
-  stopifnot(nlyr(tmax) == 12)
-  stopifnot(nlyr(tmin) == 12)
-  if (! identical(names(tmax), as.character(1:12)) ) {
+  stopifnot(is(tmax, "RasterStack"))
+  stopifnot(nlayers(tmax) == 12)
+  if (! identical(names(tmax), paste0("X", as.character(1:12))) ) {
     warning("tmax stack doesn't have valid names or they are not in the correct order")
   }
-  if (! identical(names(tmin), as.character(1:12)) ) {
+  stopifnot(is(tmin, "RasterStack"))
+  stopifnot(nlayers(tmin) == 12)
+  if (! identical(names(tmin), paste0("X", as.character(1:12))) ) {
     warning("tmin stack doesn't have valid names or they are not in the correct order")
   }
   r <- tmax - tmin

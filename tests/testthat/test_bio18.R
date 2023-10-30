@@ -1,36 +1,36 @@
 test_that("BIO18 c++", {
   set.seed(1234)
-  require(terra)
+  require(raster)
   
-  tas <- c(
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5)),
-    rast(matrix(rnorm(25), 5, 5))
+  tas <- stack(
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5)),
+    raster(matrix(rnorm(25), 5, 5))
   )
   names(tas) <- as.character(1:12)
   
-  pr <- c(
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5))
+  pr <- stack(
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5))
   )
   names(pr) <- as.character(1:12)
   
@@ -42,16 +42,16 @@ test_that("BIO18 c++", {
     for (j in seq_len(ncol(tas))) {
       val <- 0
       for (k in seq(1, 10)) {
-        window <- sum(tas[i, j, (k : (k + 2))])
+        window <- sum(tas[i, j][(k : (k + 2))])
         if (k == 1 || window > val) {
           val <- window
           q[i, j] <- k
         }
       }
-      r[i, j] <- mean(as.numeric(pr[i, j, (q[i, j] : (q[i, j] + 2))]))
+      r[i, j] <- mean(as.numeric(pr[i, j][(q[i, j] : (q[i, j] + 2))]))
     }
   }
-  baseR <- c(rast(r), rast(q))
+  baseR <- stack(raster(r), raster(q))
   names(baseR) <- c("BIO18", "start.quarter")
 
   expect_equal(

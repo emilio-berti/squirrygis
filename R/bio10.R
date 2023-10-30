@@ -4,9 +4,9 @@
 #'  starting month of the warmest quarter.
 #' @return one raster with the bioclimatic variable.
 bio10 <- function(tas, also.quarter = FALSE) {
-  stopifnot(is(tas, "SpatRaster"))
-  stopifnot(nlyr(tas) == 12)
-  if (! identical(names(tas), as.character(1:12)) ) {
+  stopifnot(is(tas, "RasterStack"))
+  stopifnot(nlayers(tas) == 12)
+  if (! identical(names(tas), paste0("X", as.character(1:12))) ) {
     warning("tas doesn't have valid names or they are not in the correct order")
   }
   
@@ -19,11 +19,11 @@ bio10 <- function(tas, also.quarter = FALSE) {
   q <- matrix(q, nrow = nrow(tas), ncol = ncol(tas), byrow = TRUE)
   r <- matrix(r, nrow = nrow(tas), ncol = ncol(tas), byrow = TRUE)
   
-  r <- rast(r)
-  q <- rast(q)
-  r <- c(r, q)
+  r <- raster(r)
+  q <- raster(q)
+  r <- stack(r, q)
   crs(r) <- crs(tas)
-  ext(r) <- ext(tas)
+  extent(r) <- extent(tas)
   names(r) <- c("BIO10", "start.quarter")
   
   if (also.quarter == FALSE) r <- r[["BIO10"]]

@@ -6,15 +6,15 @@
 #' 
 #' @return one raster with the bioclimatic variable.
 bio03 <- function(tmax, tmin) {
-  stopifnot(is(tmax, "SpatRaster"))
-  stopifnot(is(tmin, "SpatRaster"))
-  stopifnot(nlyr(tmax) == 12)
-  stopifnot(nlyr(tmin) == 12)
-  if (! identical(names(tmax), as.character(1:12)) ) {
-    warning("tmax doesn't have valid names or they are not in the correct order")
+  stopifnot(is(tmax, "RasterStack"))
+  stopifnot(nlayers(tmax) == 12)
+  if (! identical(names(tmax), paste0("X", as.character(1:12))) ) {
+    warning("tmax stack doesn't have valid names or they are not in the correct order")
   }
-  if (! identical(names(tmin), as.character(1:12)) ) {
-    warning("tmin doesn't have valid names or they are not in the correct order")
+  stopifnot(is(tmin, "RasterStack"))
+  stopifnot(nlayers(tmin) == 12)
+  if (! identical(names(tmin), paste0("X", as.character(1:12))) ) {
+    warning("tmin stack doesn't have valid names or they are not in the correct order")
   }
   num <- tmax - tmin
   num <- mean(num)

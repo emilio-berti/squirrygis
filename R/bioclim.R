@@ -33,7 +33,7 @@ bioclim <- function(tas, tmin, tmax, pr, checks = FALSE) {
   b17 <- bio17(pr)
   b18 <- bio18(tas, pr)
   b19 <- bio19(tas, pr)
-  ans <- c(
+  ans <- stack(
     b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11,
     b12, b13, b14, b15, b16, b17, b18, b19
   )

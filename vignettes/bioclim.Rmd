@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(terra)
+library(raster)
 library(squirrygis)
 ```
 
@@ -65,11 +65,11 @@ Therefore, I implemented a routine that optionally returns the starting month of
 
 ```{r quarter}
 tas <- array(runif(10*10*12, 250, 300), dim = c(10, 10, 12))
-tas <- rast(tas)
+tas <- stack(brick(tas))
 names(tas) <- as.character(1:12)
 b10 <- bio10(tas, also.quarter = TRUE) #return a stack with also the starting month
 plot(b10[["BIO10"]], main = "BIO10")
-plot(b10[["start.quarter"]], type = "classes", main = "First month of quarter")
+plot(b10[["start.quarter"]], main = "First month of quarter")
 ```
 
 Note also that the months in the quarter must fall within the same calendar year, i.e. November and December from the previous year and January and March of the following year are not included in the calculations.
@@ -79,13 +79,13 @@ In addition to functions that calculate each bioclimatic variable separately, in
 
 ```{r bioclim}
 tas <- array(runif(10*10*12, 250, 300), dim = c(10, 10, 12))
-tas <- rast(tas)
+tas <- stack(brick(tas))
 tmin <- array(runif(10*10*12, 210, 250), dim = c(10, 10, 12))
-tmin <- rast(tmin)
+tmin <- stack(brick(tmin))
 tmax <- array(runif(10*10*12, 300, 350), dim = c(10, 10, 12))
-tmax <- rast(tmax)
+tmax <- stack(brick(tmax))
 pr <- array(runif(10*10*12, 0, 1e4), dim = c(10, 10, 12))
-pr <- rast(pr)
+pr <- stack(brick(pr))
 names(tas) <- as.character(1:12)
 names(tmin) <- as.character(1:12)
 names(tmax) <- as.character(1:12)

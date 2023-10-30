@@ -1,20 +1,20 @@
 test_that("BIO17 c++", {
   set.seed(1234)
-  require(terra)
+  require(raster)
   
-  pr <- c(
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5)),
-    rast(matrix(runif(25, 5, 25), 5, 5))
+  pr <- stack(
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5)),
+    raster(matrix(runif(25, 5, 25), 5, 5))
   )
   names(pr) <- as.character(1:12)
   
@@ -26,16 +26,16 @@ test_that("BIO17 c++", {
     for (j in seq_len(ncol(pr))) {
       val <- Inf
       for (k in seq(1, 10)) {
-        window <- sum(pr[i, j, (k : (k + 2))])
+        window <- sum(pr[i, j][(k : (k + 2))])
         if (k == 1 || window < val) {
           val <- window
           q[i, j] <- k
         }
       }
-      r[i, j] <- mean(as.numeric(pr[i, j, (q[i, j] : (q[i, j] + 2))]))
+      r[i, j] <- mean(as.numeric(pr[i, j][(q[i, j] : (q[i, j] + 2))]))
     }
   }
-  baseR <- c(rast(r), rast(q))
+  baseR <- stack(raster(r), raster(q))
   names(baseR) <- c("BIO17", "start.quarter")
   
   expect_equal(
